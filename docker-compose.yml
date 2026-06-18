@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:15 # qual imagem usar (versão 15 do postgres)
+    container_name: todolist_postgres # nome do container pra identificar fácil
+    environment: # variáveis de ambiente (igual ao .env)
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+        - "5432:5432"  # porta do PC : porta do container
+    volumes:
+        - postgres_data:/var/lib/postgresql/data # onde salvar os dados (não perde ao derrubar)
+volumes:
+  postgres_data:
