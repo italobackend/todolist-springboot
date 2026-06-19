@@ -1,6 +1,6 @@
 package com.italobackend.todolistspringboot.entity;
 
-import com.italobackend.todolistspringboot.enums.entity.Priority;
+import com.italobackend.todolistspringboot.enums.Priority;
 import jakarta.persistence.*;
 
 
