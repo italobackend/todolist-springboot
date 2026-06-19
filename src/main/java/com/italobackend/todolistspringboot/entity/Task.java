@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "tasks")
@@ -16,11 +16,13 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "priority")
     private Priority priority;
     private boolean completed;
     private Timestamp created_at;
     @Column(name = "due_date")
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -29,7 +31,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(Long id, String title, Priority priority, boolean completed, Timestamp created_at, LocalDateTime dueDate, User user) {
+    public Task(Long id, String title, Priority priority, boolean completed, Timestamp created_at, LocalDate dueDate, User user) {
         this.id = id;
         this.title = title;
         this.priority = priority;
@@ -59,7 +61,7 @@ public class Task {
         return created_at;
     }
 
-    public LocalDateTime getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
