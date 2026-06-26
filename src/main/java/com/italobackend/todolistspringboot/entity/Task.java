@@ -68,4 +68,20 @@ public class Task {
     public User getUser() {
         return user;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
 }
