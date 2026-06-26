@@ -1,5 +1,6 @@
 package com.italobackend.todolistspringboot.service;
 
+import com.italobackend.todolistspringboot.dtos.TaskRequestDTO;
 import com.italobackend.todolistspringboot.entity.Task;
 import com.italobackend.todolistspringboot.repository.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,32 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public void createTask(Task task) {
+    public Task createTask(TaskRequestDTO dto) {
+        Task task = new Task();
 
+        task.setTitle(dto.title());
+        task.setPriority(dto.priority());
+        task.setDueDate(dto.dueDate());
+
+        return taskRepository.save(task);
+    }
+
+    public void deletaTask(Long id) {
+        taskRepository.deleteById(id);
+    }
+
+    public void editTitleTask(Task task, TaskRequestDTO dto) {
+        task.setTitle(dto.title());
+        taskRepository.save(task);
+    }
+
+    public void editPriority(Task task, TaskRequestDTO dto) {
+        task.setPriority(dto.priority());
+        taskRepository.save(task);
+    }
+
+    public void changeStatus(Task task, TaskRequestDTO dto) {
+        task.setCompleted(dto.completed());
         taskRepository.save(task);
     }
 
