@@ -26,21 +26,31 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public void deletaTask(Long id) {
+    public void deleteTask(Long id) {
         taskRepository.deleteById(id);
     }
 
-    public void editTitleTask(Task task, TaskRequestDTO dto) {
+    public void editTitleTask(Long id, TaskRequestDTO dto) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
         task.setTitle(dto.title());
         taskRepository.save(task);
     }
 
-    public void editPriority(Task task, TaskRequestDTO dto) {
+    public void editPriority(Long id, TaskRequestDTO dto) {
+
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
         task.setPriority(dto.priority());
         taskRepository.save(task);
     }
 
-    public void changeStatus(Task task, TaskRequestDTO dto) {
+    public void changeStatus(Long id, TaskRequestDTO dto) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
         task.setCompleted(dto.completed());
         taskRepository.save(task);
     }
